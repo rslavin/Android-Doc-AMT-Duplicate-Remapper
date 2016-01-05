@@ -66,32 +66,33 @@ public class ClassDocumentation {
             Elements methodsTable = page.select("[id=\"pubmethods\"] [class=\"jd-linkcol\"]");
 
             Pattern methodNamePattern = Pattern.compile("\"*>([^>]+)<\\/a");
-            Pattern methodParametersPattern = Pattern.compile("span>(\\([^<>]+\\))");
+            Pattern methodParametersPattern = Pattern.compile("span>(\\(.+\\))", Pattern.DOTALL);
             Pattern methodTypePattern = Pattern.compile("span>(\\([^<>]+\\))");
             Pattern methodDescriptionPattern = Pattern.compile("jd-descrdiv\">\\s*\\n(.+)<\\/div", Pattern.DOTALL);
             for (Element rawMethod : methodsTable) {
                 // get method name
                 Matcher m = methodNamePattern.matcher(rawMethod.toString());
                 String methodName = "no name";
-                while (m.find())
+//                while (m.find())
+                if (m.find()) // 'while' could possibly replace the name with a parameter
                     methodName = m.group(1);
 
                 // get method return type
                 m = methodTypePattern.matcher(rawMethod.toString());
                 String methodType = "unknown";
-                while (m.find())
+                if (m.find())
                     methodType = m.group(1);
 
                 // get method params
                 m = methodParametersPattern.matcher(rawMethod.toString());
                 String methodParam = "()";
-                while (m.find())
-                    methodParam = m.group(1);
+                if(m.find())
+                    methodParam = Jsoup.clean(m.group(1), Whitelist.none()).replaceFirst("\\( ", "(");
 
                 // get method description
                 m = methodDescriptionPattern.matcher(rawMethod.toString());
                 String methodDescription = "no description";
-                while (m.find())
+                if (m.find())
                     methodDescription = m.group(1);
 
                 doc.addMethod(methodName + methodParam, Jsoup.clean(methodDescription, Whitelist.none()));
@@ -185,7 +186,7 @@ public class ClassDocumentation {
 //            System.err.println(method.getKey());
 //        }
 //        return "";
-        if(apis == null)
+        if (apis == null)
             return name + "." + method.getKey().replace("(", " (") + " &mdash; " + method.getValue() + " <br /><br />";
         if (!apis.containsKey(method.getKey()) || (apis.containsKey(method.getKey()) && !apis.get(method.getKey()).contains(method.getValue()))) {
             if (!apis.containsKey(method.getKey()))
