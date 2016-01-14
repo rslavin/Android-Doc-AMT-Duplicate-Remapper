@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,15 +23,13 @@ public class ClassDocumentation {
     public Map<String, String> publicMethods; // methodSig -> description
     public Map<String, String> publicFields; // field -> description
     private String overview;
-    private Map<String, ArrayList<String>> apis;
 
-    public ClassDocumentation(String url, HashMap apis) {
+    public ClassDocumentation(String url) {
         this.overview = null;
         this.name = "no name";
         this.url = url;
         this.publicMethods = new HashMap<>();
         this.publicFields = new HashMap<>();
-        this.apis = apis;
     }
 
     /**
@@ -42,7 +39,7 @@ public class ClassDocumentation {
      * @return
      */
     public static ClassDocumentation getDoc(String url, HashMap apis, boolean isFile) {
-        ClassDocumentation doc = new ClassDocumentation(url, apis);
+        ClassDocumentation doc = new ClassDocumentation(url);
         Document page;
         try {
             // get page
@@ -86,7 +83,7 @@ public class ClassDocumentation {
                 // get method params
                 m = methodParametersPattern.matcher(rawMethod.toString());
                 String methodParam = "()";
-                if(m.find())
+                if (m.find())
                     methodParam = Jsoup.clean(m.group(1), Whitelist.none()).replaceFirst("\\( ", "(");
 
                 // get method description
@@ -99,25 +96,25 @@ public class ClassDocumentation {
             }
 
             // get Fields
-            Elements fieldsTable = page.select("[id=\"lfields\"] [class*=api]");
-
-            Pattern fieldNamePattern = Pattern.compile("\"*>([^>]+)<\\/a");
-            Pattern fieldDescriptionPattern = Pattern.compile("%\">\\s*(.+)<\\/td", Pattern.DOTALL);
-            for (Element rawField : fieldsTable) {
-                // get method name
-                Matcher m = fieldNamePattern.matcher(rawField.toString());
-                String fieldName = "no name";
-                while (m.find())
-                    fieldName = m.group(1);
-
-                // get method description
-                m = fieldDescriptionPattern.matcher(rawField.toString());
-                String fieldDescription = "no description";
-                while (m.find())
-                    fieldDescription = m.group(1);
-
-                doc.addField(fieldName, Jsoup.clean(fieldDescription, Whitelist.none()));
-            }
+//            Elements fieldsTable = page.select("[id=\"lfields\"] [class*=api]");
+//
+//            Pattern fieldNamePattern = Pattern.compile("\"*>([^>]+)<\\/a");
+//            Pattern fieldDescriptionPattern = Pattern.compile("%\">\\s*(.+)<\\/td", Pattern.DOTALL);
+//            for (Element rawField : fieldsTable) {
+//                // get method name
+//                Matcher m = fieldNamePattern.matcher(rawField.toString());
+//                String fieldName = "no name";
+//                while (m.find())
+//                    fieldName = m.group(1);
+//
+//                // get method description
+//                m = fieldDescriptionPattern.matcher(rawField.toString());
+//                String fieldDescription = "no description";
+//                while (m.find())
+//                    fieldDescription = m.group(1);
+//
+//                doc.addField(fieldName, Jsoup.clean(fieldDescription, Whitelist.none()));
+//            }
 
         } catch (IOException e) {
             System.err.println("Error retrieving documentation for '" + url + "'");
@@ -157,23 +154,21 @@ public class ClassDocumentation {
         }
     }
 
-    public List<String> toCsvRows(int maxPerRow) {
-        List rows = new ArrayList();
+    public void toCsvRows(int maxPerRow) {
+//        List rows = new ArrayList();
         String row = "";
-        int count = 1;
+//        int count = 1;
         for (Map.Entry<String, String> method : publicMethods.entrySet()) {
             String addition = methodToRow(method);
             if (!addition.equals("")) {
-                row += addition;//methodToRow(method);
-                if (count++ >= maxPerRow) {
-                    rows.add(row);
-                    row = "";
-                    count = 1;
+                Driver.csvRow += addition;//methodToRow(method);
+                if (Driver.csvRowsCount++ >= maxPerRow) {
+                    Driver.csvRows.add(Driver.csvRow);
+                    Driver.csvRow = "";
+                    Driver.csvRowsCount = 1;
                 }
             }
         }
-
-        return rows;
     }
 
     private String methodToRow(Map.Entry<String, String> method) {
@@ -186,15 +181,37 @@ public class ClassDocumentation {
 //            System.err.println(method.getKey());
 //        }
 //        return "";
-        if (apis == null)
+
+//        if(name.contains("Location")) {
+//            System.err.println(name + "." + method.getKey().substring(0, method.getKey().indexOf('(')));
+//            System.err.println(Driver.filter.match(name + "." + method.getKey().substring(0, method.getKey().indexOf('('))));
+//        }
+
+        // if using a filter and it isn't matched, return '';
+        if(Driver.filter != null && !Driver.filter.match(name + "." + method.getKey().substring(0, method.getKey().indexOf('('))))
+            return "";
+
+        // if not trying to match both api and descriptions,
+        if (Driver.MATCH_TYPE == null)
             return name + "." + method.getKey().replace("(", " (") + " &mdash; " + method.getValue() + " <br /><br />";
-        if (!apis.containsKey(method.getKey()) || (apis.containsKey(method.getKey()) && !apis.get(method.getKey()).contains(method.getValue()))) {
-            if (!apis.containsKey(method.getKey()))
-                apis.put(method.getKey(), new ArrayList<String>());
-            apis.get(method.getKey()).add(method.getValue());
-            return name + "." + method.getKey().replace("(", " (") + " &mdash; " + method.getValue() + " <br /><br />";
+
+        // check apis and descriptions
+        if(Driver.MATCH_TYPE == "b") {
+            if (!Driver.apis.containsKey(method.getKey()) || (Driver.apis.containsKey(method.getKey()) && !Driver.apis.get(method.getKey()).contains(method.getValue()))) {
+                if (!Driver.apis.containsKey(method.getKey()))
+                    Driver.apis.put(method.getKey(), new ArrayList<String>());
+                Driver.apis.get(method.getKey()).add(method.getValue());
+                return name + "." + method.getKey().replace("(", " (") + " &mdash; " + method.getValue() + " <br /><br />";
+            }
+        }else if (Driver.MATCH_TYPE == "d") {
+            // check descriptions only
+            if (!Driver.descriptions.contains(method.getValue())) {
+                Driver.descriptions.add(method.getValue());
+                return name + "." + method.getKey().replace("(", " (") + " &mdash; " + method.getValue() + " <br /><br />";
+            }
         }
         return "";
+
     }
 
 

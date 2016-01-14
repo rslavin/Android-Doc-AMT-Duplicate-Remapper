@@ -42,7 +42,7 @@ public class CsvWriter {
 
     public void addRow(String row) {
 //        rows.add("\"" + row.replace("\"", "'").replace("&mdash;", "\",\"").replace("&lt;", "<").replace("&gt;", ">").replace("&nbsp;", " ").replace("&amp;", "&") + "\"" + NEWLINE);
-        rows.add("\"" + row.replace("\"", "'").replace("&mdash;", "\",\"").replace("&lt;", "<").replace("&gt;", ">").replace("&nbsp;", " ").replace("&amp;", "&") + "\"" + NEWLINE); // split methods and descriptions into cells
+        rows.add("\"" + row.replace("\"", "'").replace("&lt;", "<").replace("&gt;", ">").replace("&nbsp;", " ").replace("&amp;", "&") + "\"" + NEWLINE); // split methods and descriptions into cells
     }
 
     public void addRow(String[] row) {
