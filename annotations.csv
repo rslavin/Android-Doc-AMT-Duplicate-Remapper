@@ -1,0 +1,149 @@
+"android.accounts.AccountManager.getAuthToken(Account account, String authTokenType, Bundle options, boolean notifyAuthFailure, AccountManagerCallback<Bundle> callback, Handler handler)",account auth token
+android.location.Address.getAdminArea(),administrative area
+android.location.Location.getAltitude(),altitude
+"android.content.pm.PackageManager.getApplicationInfo(String packageName, int flags)","application information, app name, app path, app permissions, app process name, app sdk version, app uid, screen size"
+android.hardware.Camera.open(),back-facing camera
+"android.app.backup.BackupDataInput.readEntityData(byte[] data, int offset, int size)",backup data
+android.location.Location.getBearing(),bearing
+"android.location.LocationManager.getBestProvider(Criteria criteria, boolean enabledOnly)",best location provider
+android.bluetooth.BluetoothAdapter.getState(),bluetooth adapter status
+android.bluetooth.BluetoothAdapter.isEnabled(),bluetooth adapter status
+android.bluetooth.BluetoothClass.getDeviceClass(),bluetooth device class
+android.bluetooth.BluetoothClass.getMajorDeviceClass(),bluetooth device class
+android.bluetooth.BluetoothDevice.getBluetoothClass(),bluetooth device class
+android.bluetooth.BluetoothDevice.getName(),bluetooth device name
+android.bluetooth.BluetoothAdapter.getAddress(),bluetooth hardware address
+android.bluetooth.BluetoothAdapter.getState(),bluetooth status
+android.bluetooth.BluetoothAdapter.getBondedDevices(),bonded bluetooth devices
+android.webkit.WebSettings.getDefaultUserAgent(Context context),"browser user agent, browser type, browser version, browser language"
+android.webkit.WebSettings.getUserAgentString(),browser user agent
+android.hardware.Camera.startPreview(),camera preview
+android.app.admin.DevicePolicyManager.getCameraDisabled(ComponentName admin),camera status
+android.telephony.TelephonyManager.getNeighboringCellInfo(),"cell information, cid, lac, network type, psc, rssi"
+android.text.ClipboardManager.getText(),clipboard text
+android.net.NetworkInfo.getState(),coarse-grained network status
+android.webkit.CookieManager.getCookie(String url),cookies
+android.location.Address.getCountryCode(),country code
+android.telephony.TelephonyManager.getSimCountryIso(),country code
+android.telephony.TelephonyManager.getCellLocation(),current location
+android.telephony.TelephonyManager.getDataActivity(),data connection activity type
+android.net.ConnectivityManager.getActiveNetworkInfo(),"data network details, fine-grained network state, coarse-grained network state, network availability, network connection status"
+android.net.ConnectivityManager.isActiveNetworkMetered(),data network metering
+android.app.admin.DevicePolicyManager.getActiveAdmins(),device administrator's component names
+android.app.ActivityManager.getDeviceConfigurationInfo(),"device configuration, GLES version, input preference, keyboard type, touch screen type"
+android.view.KeyEvent.getDeviceId(),device id
+android.view.InputDevice.getMotionRanges(),device supported axes ranges
+android.location.Location.distanceTo(Location dest),distance
+android.telephony.TelephonyManager.getDeviceId(),esn
+"android.os.ParcelFileDescriptor.open(File file, int mode, Handler handler, ParcelFileDescriptor.OnCloseListener listener)",file
+android.net.NetworkInfo.getDetailedState(),"fine-grained network status, fine-grained network state"
+android.os.Handler.obtainMessage(),os message
+"android.content.pm.PackageManager.queryPermissionsByGroup(String group, int flags)",group permissions
+android.location.LocationProvider.getAccuracy(),horizontal provider accuracy
+android.telephony.TelephonyManager.getDeviceId(),imei
+android.telephony.TelephonyManager.getSubscriberId(),imsi
+android.view.InputDevice.getName(),input device
+android.view.InputDevice.getDescriptor(),input device description
+android.hardware.input.InputManager.getInputDevice(int id),input device information
+android.hardware.input.InputManager.getInputDeviceIds(),input devices
+android.content.pm.PackageManager.getInstalledApplications(int flags),installed applications
+android.content.pm.PackageManager.getInstalledPackages(int flags),installed applications
+"android.content.pm.PackageManager.queryBroadcastReceivers(Intent intent, int flags)",intent receivers
+"android.content.pm.PackageManager.queryIntentServices(Intent intent, int flags)",intent receivers
+android.net.wifi.WifiManager.getDhcpInfo(),"ip address, dns servers, gateway, ip address, lease duration, netmask server address"
+android.telephony.TelephonyManager.getNetworkCountryIso(),iso country code
+android.media.ExifInterface.getThumbnail(),jpeg thumbnail
+android.view.KeyCharacterMap.load(int deviceId),keyboard character maps
+android.app.SearchableInfo.getVoiceLanguageId(),language id
+android.app.SearchableInfo.getVoiceLanguageModeId(),language model id
+android.location.LocationManager.getLastKnownLocation(String provider),last known location
+android.location.Location.getLatitude(),latitude
+android.location.Address.getCountryName(),localized country name
+"android.location.LocationManager.requestLocationUpdates(long minTime, float minDistance, Criteria criteria, LocationListener listener, Looper looper)",location
+"android.location.LocationManager.requestLocationUpdates(long minTime, float minDistance, Criteria criteria, PendingIntent intent)",location
+"android.location.LocationManager.requestLocationUpdates(String provider, long minTime, float minDistance, LocationListener listener, Looper looper)",location
+"android.location.LocationManager.requestLocationUpdates(String provider, long minTime, float minDistance, LocationListener listener)",location
+"android.location.LocationManager.requestSingleUpdate(Criteria criteria, LocationListener listener, Looper looper)",location
+"android.location.LocationManager.requestSingleUpdate(Criteria criteria, PendingIntent intent)",location
+"android.location.LocationManager.requestSingleUpdate(String provider, LocationListener listener, Looper looper)",location
+"android.location.LocationManager.requestSingleUpdate(String provider, PendingIntent intent)",location
+android.location.Location.getAccuracy(),location accuracy
+android.location.LocationManager.getProvider(String name),location provider
+android.location.LocationManager.getProviders(boolean enabledOnly),location provider
+android.hardware.display.DisplayManager.getDisplay(int displayId),logical display information
+android.hardware.display.DisplayManager.getDisplays(),logical displays
+android.hardware.display.DisplayManager.getDisplays(String category),logical displays
+android.location.Location.getLongitude(),longitude
+android.location.Location.setLongitude(double longitude),longitude
+android.location.Address.getAddressLine(int index),mailing address
+android.location.Address.getLocality(),mailing address
+"android.location.Geocoder.getFromLocationName(String locationName, int maxResults)",mailing addresses
+"android.location.Geocoder.getFromLocationName(String locationName, int maxResults)",mailing addresses
+android.telephony.TelephonyManager.getNetworkCountryIso(),mcc
+android.telephony.TelephonyManager.getNetworkOperator(),mcc
+android.telephony.TelephonyManager.getSimOperator(),mcc
+android.telephony.TelephonyManager.getDeviceId(),meid
+android.telephony.TelephonyManager.getNetworkOperator(),mnc
+android.telephony.TelephonyManager.getSimOperator(),mnc
+android.telephony.TelephonyManager.getNetworkCountryIso(),mobile country code
+android.telephony.TelephonyManager.getSimOperator(),mobile country code
+android.telephony.TelephonyManager.getNetworkOperator(),mobile network code
+android.telephony.TelephonyManager.getSimOperator(),mobile network code
+android.telephony.TelephonyManager.getLine1Number(),msisdn
+android.net.ConnectivityManager.getAllNetworkInfo(),"network connection status, fine-grained network state, coarse-grained network state, network availability, network connection status"
+android.net.ConnectivityManager.getNetworkInfo(int networkType),network connection status
+android.net.ConnectivityManager.getNetworkInfo(Network network),network connection status
+android.net.NetworkInfo.getSubtypeName(),network name
+android.net.NetworkInfo.isRoaming(),network roaming
+android.telephony.ServiceState.getRoaming(),network roaming
+android.telephony.TelephonyManager.isNetworkRoaming(),network roaming
+android.net.NetworkInfo.getExtraInfo(),"network state, network information (this is a string that could contain anything)"
+android.net.NetworkInfo.getSubtype(),network type
+android.net.NetworkInfo.getType(),network type
+android.net.NetworkInfo.getTypeName(),network type
+android.view.accessibility.AccessibilityRecord.isPassword(),password
+android.telephony.TelephonyManager.getLine1Number(),phone number
+android.telephony.TelephonyManager.getPhoneType(),phone type
+"android.location.Geocoder.getFromLocationName(String locationName, int maxResults)",place name
+android.location.Address.getPostalCode(),postal code
+android.content.Context.openFileInput(String name),private file
+"android.content.Context.checkPermission(String permission, int pid, int uid)",process permission
+android.os.Build.getRadioVersion(),radio firmware version
+android.accounts.AccountManager.getAccounts(),registered device accounts
+android.accounts.AccountManager.getAccountsByType(String type),registered device accounts
+android.telephony.TelephonyManager.getNetworkOperatorName(),registered operator's alphabetic name
+"android.hardware.SensorManager.getDefaultSensor(int type, boolean wakeUp)",sensor
+android.hardware.SensorManager.getDefaultSensor(int type),sensor
+"android.hardware.SensorManager.registerListener(SensorEventListener listener, Sensor sensor, int samplingPeriodUs, int maxReportLatencyUs)",sensor
+"android.content.pm.PackageManager.getServiceInfo(ComponentName component, int flags)",service information
+android.telephony.TelephonyManager.getSimOperatorName(),service provider name
+android.telephony.TelephonyManager.getSimState(),SIM card state
+android.telephony.TelephonyManager.getSimSerialNumber(),SIM serial number
+android.telephony.SmsMessage.getOriginatingAddress(),sms address
+android.telephony.SmsMessage.getDisplayMessageBody(),sms message body
+android.telephony.SmsMessage.getMessageBody(),sms message body
+"android.media.SoundPool.play(int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate)",sound playback
+android.location.Location.getSpeed(),speed
+android.telephony.TelephonyManager.getSimOperatorName(),spm (service provider name)
+android.content.pm.PackageManager.getSystemAvailableFeatures(),system features
+android.text.format.Time.getCurrentTimezone(),timezone
+android.telephony.TelephonyManager.getDeviceId(),unique device id
+android.telephony.TelephonyManager.getSubscriberId(),unique subscriber id
+android.webkit.WebView.getOriginalUrl(),url
+android.webkit.WebView.getOriginalUrl(),url
+"android.accounts.AccountManager.getUserData(Account account, String key)",user data
+android.os.Environment.getDataDirectory(),os user data
+android.content.pm.PackageManager.getNameForUid(int uid),os user's name
+android.content.pm.PackageManager.getPackagesForUid(int uid),os user's packages
+android.location.Location.getTime(),utc time
+android.telephony.ServiceState.getState(),voice service
+android.net.wifi.WifiManager.getScanResults(),wifi access points
+android.net.wifi.WifiInfo.getBSSID(),wifi basic service set identifier
+android.net.wifi.WifiInfo.getBSSID(),wifi bssid
+android.net.wifi.WifiManager.getConnectionInfo(),"wifi connections, bssid, frequency, ssid, ip address, link speed, mac address, network id, rssi, detailed connection state"
+android.net.wifi.WifiManager.getWifiState(),wifi enabled state
+android.net.wifi.WifiInfo.getLinkSpeed(),wifi link speed
+android.net.wifi.WifiInfo.getNetworkId(),wifi network id
+android.net.wifi.WifiManager.getConfiguredNetworks(),wifi networks
+android.net.wifi.WifiInfo.getRssi(),wifi received signal strength indicator
+android.net.wifi.WifiInfo.getSSID(),wifi service set identifier

@@ -31,7 +31,7 @@ public class CsvWriter {
     public void addRow(ArrayList<String> row) {
         String newRow = "";
         for (String cell : row) {
-            cell = "\"" + cell + "\"";
+            cell = "\"" + cell.replaceAll("\"", "'") + "\"";
             if (newRow.length() < 1)
                 newRow = cell;
             else
