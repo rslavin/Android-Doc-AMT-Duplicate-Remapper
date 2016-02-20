@@ -32,13 +32,16 @@ public class Driver {
             maps = ExistingMap.readMaps(ANNOTATED_METHODS_PATH);
             files = new ArrayList<>();
             walk(DOCS_PATH);
+            System.out.println(files.size());
+            if (true)
+                return;
             int count = 1;
             for (ExistingMap map : maps) {
                 boolean found = false;
-                System.out.println("("+ count++ + "/" + maps.size() + ") Retrieving description: " + map.method + "...");
+                System.out.println("(" + count++ + "/" + maps.size() + ") Retrieving description: " + map.method + "...");
                 // get description
                 for (String file : files) {
-                    if(found)
+                    if (found)
                         break;
                     ClassDocumentation doc;// = new ClassDocumentation(file);
                     if ((doc = ClassDocumentation.getDoc(file, (HashMap) apis, true)) != null) {
